@@ -1,0 +1,31 @@
+Summary of SPARK analysis
+=========================
+
+-----------------------------------------------------------------------------------------
+SPARK Analysis results        Total      Flow   CodePeer   Provers   Justified   Unproved
+-----------------------------------------------------------------------------------------
+Data Dependencies                 .         .          .         .           .          .
+Flow Dependencies                 .         .          .         .           .          .
+Initialization                    .         .          .         .           .          .
+Non-Aliasing                      .         .          .         .           .          .
+Run-time Checks                   .         .          .         .           .          .
+Assertions                        .         .          .         .           .          .
+Functional Contracts              .         .          .         .           .          .
+LSP Verification                  .         .          .         .           .          .
+Termination                       .         .          .         .           .          .
+Concurrency                       .         .          .         .           .          .
+-----------------------------------------------------------------------------------------
+Total                             .         .          .         .           .          .
+
+
+max steps used for successful proof: 0
+
+Analyzed 1 unit
+in unit show_depends_contracts, 1 subprograms and packages out of 7 analyzed
+  Show_Depends_Contracts at show_depends_contracts.ads:1 flow analyzed (0 errors, 0 checks and 0 warnings)
+  Show_Depends_Contracts.Do_Nothing at show_depends_contracts.ads:27 skipped
+  Show_Depends_Contracts.Get_Value_Of_X at show_depends_contracts.ads:15 skipped
+  Show_Depends_Contracts.Set_X_To_X_Plus_Y at show_depends_contracts.ads:23 skipped
+  Show_Depends_Contracts.Set_X_To_Y_Plus_Z at show_depends_contracts.ads:19 skipped
+  Show_Depends_Contracts.Set_X_To_Zero at show_depends_contracts.ads:31 skipped
+  Show_Depends_Contracts.Swap at show_depends_contracts.ads:9 skipped

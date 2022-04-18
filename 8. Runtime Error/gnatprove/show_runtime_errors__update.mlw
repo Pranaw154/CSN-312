@@ -1,0 +1,654 @@
+module Standard__integer
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  
+  type integer = <range -2147483648 2147483647>
+  
+  val function first : int
+    ensures { result = ((- 2147483648) : int) }
+  
+  val function last : int
+    ensures { result = (2147483647 : int) }
+  
+  predicate in_range (x: int) = ((first <= x) /\ (x <= last))
+  
+  val in_range (x: int) : bool
+    ensures { result <-> (in_range (x : int)) }
+  
+  clone export ada__model.Static_Discrete with
+    axiom .,
+    type t = integer,
+    function first = first,
+    function last = last,
+    predicate in_range = in_range
+  
+  type integer__ref = { mutable integer__content : integer }
+  
+  function integer__ref_integer__content__projection (a: integer__ref) : integer =
+    a.integer__content
+  
+  meta "model_projection" function integer__ref_integer__content__projection
+  
+  meta "inline:no" function integer__ref_integer__content__projection
+  
+  val integer__havoc (x: integer__ref) : unit
+    writes { x }
+end
+
+module Standard__integer___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__integer as Standard__integer
+  
+  predicate dynamic_invariant (temp___expr_18: int) (temp___is_init_14: bool) (temp___skip_constant_15: bool) (temp___do_toplevel_16: bool) (temp___do_typ_inv_17: bool) =
+    if ((temp___is_init_14 = True) \/
+          (Standard__integer.first <= Standard__integer.last)) then
+      (((Standard__integer.dynamic_property Standard__integer.first)
+          Standard__integer.last)
+         temp___expr_18)
+    else true
+  
+  val dynamic_invariant (temp___expr_18: int) (temp___is_init_14: bool) (temp___skip_constant_15: bool) (temp___do_toplevel_16: bool) (temp___do_typ_inv_17: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant (temp___expr_18 : int))
+                      (temp___is_init_14 : bool))
+                     (temp___skip_constant_15 : bool))
+                    (temp___do_toplevel_16 : bool))
+                   (temp___do_typ_inv_17 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_19: int) (temp___skip_top_level_20: bool) =
+    true
+  
+  val default_initial_assumption (temp___expr_19: int) (temp___skip_top_level_20: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption (temp___expr_19 : int))
+                   (temp___skip_top_level_20 : bool)) }
+end
+
+module Standard__natural
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  
+  type natural = <range 0 2147483647>
+  
+  val function first : int
+    ensures { result = (0 : int) }
+  
+  val function last : int
+    ensures { result = (2147483647 : int) }
+  
+  predicate in_range (x: int) = ((first <= x) /\ (x <= last))
+  
+  val in_range (x: int) : bool
+    ensures { result <-> (in_range (x : int)) }
+  
+  clone export ada__model.Static_Discrete with
+    axiom .,
+    type t = natural,
+    function first = first,
+    function last = last,
+    predicate in_range = in_range
+  
+  type natural__ref = { mutable natural__content : natural }
+  
+  function natural__ref_natural__content__projection (a: natural__ref) : natural =
+    a.natural__content
+  
+  meta "model_projection" function natural__ref_natural__content__projection
+  
+  meta "inline:no" function natural__ref_natural__content__projection
+  
+  val natural__havoc (x: natural__ref) : unit
+    writes { x }
+end
+
+module Standard__natural__rep
+  use Standard__natural as Standard__natural
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  function to_rep (x: Standard__natural.natural) : int =
+    Standard__natural.natural'int x
+  
+  clone export ada__model.Rep_Proj_Int with
+    axiom .,
+    type t = Standard__natural.natural,
+    predicate in_range = Standard__natural.in_range,
+    function to_rep = to_rep
+  
+  meta "model_projection" function to_rep
+  
+  meta "inline:no" function to_rep
+end
+
+module Standard__integer__rep
+  use Standard__integer as Standard__integer
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  function to_rep (x: Standard__integer.integer) : int =
+    Standard__integer.integer'int x
+  
+  clone export ada__model.Rep_Proj_Int with
+    axiom .,
+    type t = Standard__integer.integer,
+    predicate in_range = Standard__integer.in_range,
+    function to_rep = to_rep
+  
+  meta "model_projection" function to_rep
+  
+  meta "inline:no" function to_rep
+end
+
+module Array__Int__Standard__natural
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__natural as Standard__natural
+  use Standard__natural__rep as Standard__natural__rep
+  
+  function index_I1_one : int = 1 : int
+  
+  type component_type = Standard__natural.natural
+  
+  clone export _gnatprove_standard.Array__1 with
+    axiom .,
+    type I1.t = int,
+    predicate I1.le = Int.( <= ),
+    predicate I1.lt = Int.( < ),
+    predicate I1.gt = Int.( > ),
+    function I1.add = Int.( + ),
+    function I1.sub = Int.( - ),
+    function I1.one = index_I1_one,
+    type component_type = component_type
+  
+  function bool_eq (a: map) (a__first: int) (a__last: int) (b: map) (b__first: int) (b__last: int) : bool =
+    ((if (a__first <= a__last) then
+        ((b__first <= b__last) /\
+           ((a__last - a__first) = (b__last - b__first)))
+      else (b__first > b__last)) /\
+       (forall temp___idx_161 : int.
+          if ((a__first <= temp___idx_161) /\ (temp___idx_161 <= a__last)) then
+            ((Standard__natural__rep.to_rep ((get a) temp___idx_161))
+               = (Standard__natural__rep.to_rep
+                    ((get b) ((b__first - a__first) + temp___idx_161))))
+          else true))
+  
+  val bool_eq (a: map) (a__first: int) (a__last: int) (b: map) (b__first: int) (b__last: int) : 
+    bool
+    ensures { result
+      =
+      ((((((bool_eq (a : map)) (a__first : int)) (a__last : int)) (b : map))
+          (b__first : int))
+         (b__last : int)) }
+  
+  axiom bool_eq_rev:
+    forall a : map, b : map.
+      forall a__first : int, a__last : int, b__first : int, b__last : int.
+        ((((((((bool_eq b) b__first) b__last) a) a__first) a__last) = True) ->
+           ((if (a__first <= a__last) then
+               ((b__first <= b__last) /\
+                  ((a__last - a__first) = (b__last - b__first)))
+             else (b__first > b__last)) /\
+              (forall temp___idx_161 : int.
+                 if ((a__first <= temp___idx_161) /\
+                       (temp___idx_161 <= a__last)) then
+                   ((Standard__natural__rep.to_rep ((get a) temp___idx_161))
+                      = (Standard__natural__rep.to_rep
+                           ((get b) ((b__first - a__first) + temp___idx_161))))
+                 else true)))
+end
+
+module Show_runtime_errors__update__a
+  use _gnatprove_standard.Main
+  use int.Int
+  use Standard__integer as Standard__integer
+  use Array__Int__Standard__natural as Array__Int__Standard__natural
+  
+  val a : Array__Int__Standard__natural.map__ref
+  
+  val function a__first : Standard__integer.integer
+  
+  val function a__last : Standard__integer.integer
+end
+
+module Show_runtime_errors__update__i
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val function i : int
+end
+
+module Show_runtime_errors__update__j
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val function j : int
+end
+
+module Show_runtime_errors__update__p
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val function p : int
+end
+
+module Show_runtime_errors__update__q
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val function q : int
+end
+
+module Show_runtime_errors__nat_array
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__integer as Standard__integer
+  use Standard__integer as Standard__integer
+  use Standard__natural as Standard__natural
+  use Standard__integer__rep as Standard__integer__rep
+  use Array__Int__Standard__natural as Array__Int__Standard__natural
+  
+  type component_type = Standard__natural.natural
+  
+  function index_1_id (x: int) : int = x
+  
+  clone export ada__model.Unconstr_Array with
+    axiom .,
+    type map = Array__Int__Standard__natural.map,
+    function array_bool_eq = Array__Int__Standard__natural.bool_eq,
+    type index_base_type = Standard__integer.integer,
+    type index_rep_type = int,
+    function to_rep = Standard__integer__rep.to_rep,
+    function rep_to_int = index_1_id,
+    predicate in_range_base = Standard__integer.in_range,
+    predicate index_dynamic_property = Standard__integer.dynamic_property,
+    predicate index_rep_le = Int.( <= )
+  
+  type nat_array = __t
+  
+  meta "model_projection" function to_array
+  
+  meta "inline:no" function to_array
+  
+  meta "model_projection" function first
+  
+  meta "inline:no" function first
+  
+  meta "model_projection" function last
+  
+  meta "inline:no" function last
+  
+  type nat_array__ref = { mutable nat_array__content : nat_array }
+  
+  function nat_array__ref_nat_array__content__projection (a: nat_array__ref) : nat_array =
+    a.nat_array__content
+  
+  meta "model_projection" function nat_array__ref_nat_array__content__projection
+  
+  meta "inline:no" function nat_array__ref_nat_array__content__projection
+  
+  val nat_array__havoc (x: nat_array__ref) : unit
+    writes { x }
+end
+
+module Show_runtime_errors__update__S1b
+  use export Show_runtime_errors__nat_array
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  type s1b = nat_array
+  
+  type s1b__ref = { mutable s1b__content : s1b }
+  
+  function s1b__ref_s1b__content__projection (a: s1b__ref) : s1b =
+    a.s1b__content
+  
+  meta "model_projection" function s1b__ref_s1b__content__projection
+  
+  meta "inline:no" function s1b__ref_s1b__content__projection
+  
+  val s1b__havoc (x: s1b__ref) : unit
+    writes { x }
+end
+
+module Standard__natural___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__natural as Standard__natural
+  
+  predicate dynamic_invariant (temp___expr_46: int) (temp___is_init_42: bool) (temp___skip_constant_43: bool) (temp___do_toplevel_44: bool) (temp___do_typ_inv_45: bool) =
+    if ((temp___is_init_42 = True) \/
+          (Standard__natural.first <= Standard__natural.last)) then
+      (((Standard__natural.dynamic_property Standard__natural.first)
+          Standard__natural.last)
+         temp___expr_46)
+    else true
+  
+  val dynamic_invariant (temp___expr_46: int) (temp___is_init_42: bool) (temp___skip_constant_43: bool) (temp___do_toplevel_44: bool) (temp___do_typ_inv_45: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant (temp___expr_46 : int))
+                      (temp___is_init_42 : bool))
+                     (temp___skip_constant_43 : bool))
+                    (temp___do_toplevel_44 : bool))
+                   (temp___do_typ_inv_45 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_47: int) (temp___skip_top_level_48: bool) =
+    true
+  
+  val default_initial_assumption (temp___expr_47: int) (temp___skip_top_level_48: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption (temp___expr_47 : int))
+                   (temp___skip_top_level_48 : bool)) }
+end
+
+module Show_runtime_errors__nat_array___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use Standard__integer as Standard__integer
+  use Show_runtime_errors__nat_array as Show_runtime_errors__nat_array
+  
+  predicate dynamic_invariant (temp___expr_166: Show_runtime_errors__nat_array.nat_array) (temp___is_init_162: bool) (temp___skip_constant_163: bool) (temp___do_toplevel_164: bool) (temp___do_typ_inv_165: bool) =
+    if temp___skip_constant_163 then true
+    else
+      ((((Show_runtime_errors__nat_array.dynamic_property
+            Standard__integer.first)
+           Standard__integer.last)
+          (Show_runtime_errors__nat_array.first temp___expr_166))
+         (Show_runtime_errors__nat_array.last temp___expr_166))
+  
+  val dynamic_invariant (temp___expr_166: Show_runtime_errors__nat_array.nat_array) (temp___is_init_162: bool) (temp___skip_constant_163: bool) (temp___do_toplevel_164: bool) (temp___do_typ_inv_165: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant
+                       (temp___expr_166 :
+                          Show_runtime_errors__nat_array.nat_array))
+                      (temp___is_init_162 : bool))
+                     (temp___skip_constant_163 : bool))
+                    (temp___do_toplevel_164 : bool))
+                   (temp___do_typ_inv_165 : bool)) }
+end
+
+module Show_runtime_errors__update__a___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module Show_runtime_errors__update__i___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module Show_runtime_errors__update__j___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module Show_runtime_errors__update__p___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module Show_runtime_errors__update__q___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module Show_runtime_errors__update__S1b___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use Standard__integer__rep as Standard__integer__rep
+  use Show_runtime_errors__update__a as Show_runtime_errors__update__a
+  use Show_runtime_errors__update__S1b as Show_runtime_errors__update__S1b
+  
+  predicate dynamic_invariant (temp___expr_174: Show_runtime_errors__update__S1b.s1b) (temp___is_init_170: bool) (temp___skip_constant_171: bool) (temp___do_toplevel_172: bool) (temp___do_typ_inv_173: bool) =
+    if temp___skip_constant_171 then true
+    else
+      ((((((Show_runtime_errors__update__S1b.dynamic_property
+              (Standard__integer__rep.to_rep
+                 Show_runtime_errors__update__a.a__first))
+             (Standard__integer__rep.to_rep
+                Show_runtime_errors__update__a.a__last))
+            (Show_runtime_errors__update__S1b.first temp___expr_174))
+           (Show_runtime_errors__update__S1b.last temp___expr_174)) /\
+          ((Show_runtime_errors__update__S1b.first temp___expr_174)
+             = (Standard__integer__rep.to_rep
+                  Show_runtime_errors__update__a.a__first))) /\
+         ((Show_runtime_errors__update__S1b.last temp___expr_174)
+            = (Standard__integer__rep.to_rep
+                 Show_runtime_errors__update__a.a__last)))
+  
+  val dynamic_invariant (temp___expr_174: Show_runtime_errors__update__S1b.s1b) (temp___is_init_170: bool) (temp___skip_constant_171: bool) (temp___do_toplevel_172: bool) (temp___do_typ_inv_173: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant
+                       (temp___expr_174 :
+                          Show_runtime_errors__update__S1b.s1b))
+                      (temp___is_init_170 : bool))
+                     (temp___skip_constant_171 : bool))
+                    (temp___do_toplevel_172 : bool))
+                   (temp___do_typ_inv_173 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_176: Show_runtime_errors__update__S1b.s1b) (temp___skip_top_level_177: bool) =
+    ((true /\
+        ((Show_runtime_errors__update__S1b.first temp___expr_176)
+           = (Standard__integer__rep.to_rep
+                Show_runtime_errors__update__a.a__first))) /\
+       ((Show_runtime_errors__update__S1b.last temp___expr_176)
+          = (Standard__integer__rep.to_rep
+               Show_runtime_errors__update__a.a__last)))
+  
+  val default_initial_assumption (temp___expr_176: Show_runtime_errors__update__S1b.s1b) (temp___skip_top_level_177: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption
+                    (temp___expr_176 : Show_runtime_errors__update__S1b.s1b))
+                   (temp___skip_top_level_177 : bool)) }
+end
+
+module Show_runtime_errors__update__subprogram_def
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use _gnatprove_standard.Int_Division as Int_Division
+  use Standard__integer as Standard__integer
+  use Standard__integer as Standard__integer
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Standard__natural as Standard__natural
+  use Standard__natural__rep as Standard__natural__rep
+  use Standard__integer__rep as Standard__integer__rep
+  use Array__Int__Standard__natural as Array__Int__Standard__natural
+  use Show_runtime_errors__update__a as Show_runtime_errors__update__a
+  use Show_runtime_errors__update__i as Show_runtime_errors__update__i
+  use Show_runtime_errors__update__j as Show_runtime_errors__update__j
+  use Show_runtime_errors__update__p as Show_runtime_errors__update__p
+  use Show_runtime_errors__update__q as Show_runtime_errors__update__q
+  use Array__Int__Standard__natural as Array__Int__Standard__natural
+  use Show_runtime_errors__nat_array as Show_runtime_errors__nat_array
+  use Show_runtime_errors__update__S1b as Show_runtime_errors__update__S1b
+  use Array__Int__Standard__natural as Array__Int__Standard__natural
+  use Array__Int__Standard__natural as Array__Int__Standard__natural
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Standard__natural___axiom as Standard__natural___axiom
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Show_runtime_errors__nat_array___axiom as Show_runtime_errors__nat_array___axiom
+  use Show_runtime_errors__update__a___axiom as Show_runtime_errors__update__a___axiom
+  use Show_runtime_errors__update__i___axiom as Show_runtime_errors__update__i___axiom
+  use Show_runtime_errors__update__j___axiom as Show_runtime_errors__update__j___axiom
+  use Show_runtime_errors__update__p___axiom as Show_runtime_errors__update__p___axiom
+  use Show_runtime_errors__update__q___axiom as Show_runtime_errors__update__q___axiom
+  use Show_runtime_errors__update__S1b___axiom as Show_runtime_errors__update__S1b___axiom
+  
+  let def (__void_param : unit)
+    requires { [#"show_runtime_errors.ads" 7 0 0] true }
+  = [@vc:divergent]
+    (([@GNAT-comment:Assume dynamic invariants of inputs of the subprogram show_runtime_errors.ads:7]
+      ());
+     ([#"show_runtime_errors.ads" 7 0 0]
+      assume {
+        [#"show_runtime_errors.ads" 7 0 0]
+        (if False then true
+         else
+           ((((Show_runtime_errors__nat_array.dynamic_property
+                 Standard__integer.first)
+                Standard__integer.last)
+               (Show_runtime_errors__update__S1b.first
+                  (((Show_runtime_errors__update__S1b.of_array
+                       (Show_runtime_errors__update__a.a.Array__Int__Standard__natural.map__content))
+                      (Standard__integer__rep.to_rep
+                         Show_runtime_errors__update__a.a__first))
+                     (Standard__integer__rep.to_rep
+                        Show_runtime_errors__update__a.a__last))))
+              (Show_runtime_errors__update__S1b.last
+                 (((Show_runtime_errors__update__S1b.of_array
+                      (Show_runtime_errors__update__a.a.Array__Int__Standard__natural.map__content))
+                     (Standard__integer__rep.to_rep
+                        Show_runtime_errors__update__a.a__first))
+                    (Standard__integer__rep.to_rep
+                       Show_runtime_errors__update__a.a__last))))) });
+     ([#"show_runtime_errors.ads" 7 0 0]
+      assume {
+        [#"show_runtime_errors.ads" 7 0 0]
+        (((((Standard__integer___axiom.dynamic_invariant
+               Show_runtime_errors__update__i.i)
+              True)
+             False)
+            True)
+           True) });
+     ([#"show_runtime_errors.ads" 7 0 0]
+      assume {
+        [#"show_runtime_errors.ads" 7 0 0]
+        (((((Standard__integer___axiom.dynamic_invariant
+               Show_runtime_errors__update__j.j)
+              True)
+             False)
+            True)
+           True) });
+     ([#"show_runtime_errors.ads" 7 0 0]
+      assume {
+        [#"show_runtime_errors.ads" 7 0 0]
+        (((((Standard__integer___axiom.dynamic_invariant
+               Show_runtime_errors__update__p.p)
+              True)
+             False)
+            True)
+           True) });
+     ([#"show_runtime_errors.ads" 7 0 0]
+      assume {
+        [#"show_runtime_errors.ads" 7 0 0]
+        (((((Standard__integer___axiom.dynamic_invariant
+               Show_runtime_errors__update__q.q)
+              True)
+             False)
+            True)
+           True) });
+     ([@GNAT-comment:Assume moved pointers in outputs of the subprogram show_runtime_errors.ads:7]
+      ());
+     ([@GNAT-comment:Check for RTE in the Pre of the subprogram show_runtime_errors.ads:7]
+      ());
+     ([#"show_runtime_errors.ads" 7 0 0] ());
+     ([@GNAT-comment:Assume Pre of the subprogram show_runtime_errors.ads:7]
+      ());
+     ([#"show_runtime_errors.ads" 7 0 0]
+      (try
+         ([#"show_runtime_errors.adb" 5 0 0] ());
+         ([@GP_Sloc:show_runtime_errors.adb:7:17]
+          [#"show_runtime_errors.adb" 7 0 0]
+          [#"show_runtime_errors.adb" 7 0 0]
+          (Show_runtime_errors__update__a.a.Array__Int__Standard__natural.map__content <-
+             (Show_runtime_errors__update__S1b.to_array
+                (let temp___181 =
+                   ((Show_runtime_errors__update__S1b.of_array
+                       (Show_runtime_errors__update__a.a.Array__Int__Standard__natural.map__content))
+                      (Standard__integer__rep.to_rep
+                         Show_runtime_errors__update__a.a__first))
+                     (Standard__integer__rep.to_rep
+                        Show_runtime_errors__update__a.a__last) in
+                 { (((Show_runtime_errors__update__S1b.of_array
+                        (Show_runtime_errors__update__a.a.Array__Int__Standard__natural.map__content))
+                       (Standard__integer__rep.to_rep
+                          Show_runtime_errors__update__a.a__first))
+                      (Standard__integer__rep.to_rep
+                         Show_runtime_errors__update__a.a__last)) with
+                   Show_runtime_errors__update__S1b.elts =
+                     (((Array__Int__Standard__natural.set
+                          (Show_runtime_errors__update__S1b.to_array
+                             (((Show_runtime_errors__update__S1b.of_array
+                                  (Show_runtime_errors__update__a.a.Array__Int__Standard__natural.map__content))
+                                 (Standard__integer__rep.to_rep
+                                    Show_runtime_errors__update__a.a__first))
+                                (Standard__integer__rep.to_rep
+                                   Show_runtime_errors__update__a.a__last))))
+                         (let temp___182 =
+                            [#"show_runtime_errors.adb" 7 0 0]
+                            [@GP_Shape:a_assign__ixdcomp__add]
+                            [@vc:annotation]
+                            [@comment:      A (I + J) := P / Q;            ^ show_runtime_errors.adb:7:12:VC_OVERFLOW_CHECK]
+                            [@GP_Reason:VC_OVERFLOW_CHECK]
+                            [@GP_Sloc:show_runtime_errors.adb:7:12]
+                            [@GP_Id:3]
+                            (Standard__integer.range_check_
+                               (Show_runtime_errors__update__i.i
+                                  + Show_runtime_errors__update__j.j)) in
+                          assert {
+                            [#"show_runtime_errors.adb" 7 0 0]
+                            [@GP_Shape:a_assign__ixdcomp__add]
+                            [@vc:annotation]
+                            [@comment:      A (I + J) := P / Q;            ^ show_runtime_errors.adb:7:12:VC_INDEX_CHECK]
+                            [@GP_Sloc:show_runtime_errors.adb:7:12]
+                            [@GP_Reason:VC_INDEX_CHECK]
+                            [@GP_Id:4]
+                            (((Show_runtime_errors__update__S1b.first
+                                 temp___181)
+                                <= temp___182) /\
+                               (temp___182
+                                  <= (Show_runtime_errors__update__S1b.last
+                                        temp___181))) };
+                          temp___182))
+                        (Standard__natural__rep.of_rep
+                           ([#"show_runtime_errors.adb" 7 0 0]
+                            [@comment:      A (I + J) := P / Q;                      ^ show_runtime_errors.adb:7:22:VC_RANGE_CHECK]
+                            [@GP_Sloc:show_runtime_errors.adb:7:22]
+                            [@vc:annotation]
+                            [@GP_Reason:VC_RANGE_CHECK]
+                            [@GP_Shape:a_assign__div]
+                            [@GP_Id:2]
+                            (Standard__natural.range_check_
+                               ([#"show_runtime_errors.adb" 7 0 0]
+                                [@comment:      A (I + J) := P / Q;                      ^ show_runtime_errors.adb:7:22:VC_OVERFLOW_CHECK]
+                                [@GP_Sloc:show_runtime_errors.adb:7:22]
+                                [@vc:annotation]
+                                [@GP_Reason:VC_OVERFLOW_CHECK]
+                                [@GP_Shape:a_assign__div]
+                                [@GP_Id:1]
+                                (Standard__integer.range_check_
+                                   ([#"show_runtime_errors.adb" 7 0 0]
+                                    [@comment:      A (I + J) := P / Q;                      ^ show_runtime_errors.adb:7:22:VC_DIVISION_CHECK]
+                                    [@GP_Sloc:show_runtime_errors.adb:7:22]
+                                    [@vc:annotation]
+                                    [@GP_Reason:VC_DIVISION_CHECK]
+                                    [@GP_Shape:a_assign__div]
+                                    [@GP_Id:0]
+                                    ((Int_Division.div_
+                                        Show_runtime_errors__update__p.p)
+                                       Show_runtime_errors__update__q.q)))))))) }))));
+         (raise Return__exc)
+       with Return__exc -> ()
+       end)))
+end

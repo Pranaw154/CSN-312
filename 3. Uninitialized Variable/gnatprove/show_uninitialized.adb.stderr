@@ -1,0 +1,12 @@
+
+show_uninitialized.adb:9:21: warning: "Max" may be referenced before it has a value [enabled by default]
+    9 |         if A (I) > Max then -- Here Max may not be initialized
+      |                    ^~~
+
+show_uninitialized.adb:9:21: medium: "Max" might not be initialized
+    9 |         if A (I) > Max then -- Here Max may not be initialized
+      |                    ^~~
+
+show_uninitialized.adb:13:14: medium: "Max" might not be initialized
+   13 |      return Max;
+      |             ^~~

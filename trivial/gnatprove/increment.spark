@@ -1,0 +1,252 @@
+{
+  "spark": [
+    {
+      "name": "Increment",
+      "sloc": [
+        {
+          "file": "increment.ads",
+          "line": 1
+        }
+      ],
+      "spark": "all"
+    }
+  ],
+  "flow": [
+    {
+      "file": "increment.ads",
+      "line": 4,
+      "col": 3,
+      "rule": "GLOBAL_WRONG",
+      "severity": "info",
+      "entity": {
+        "name": "Increment",
+        "sloc": [
+          {
+            "file": "increment.ads",
+            "line": 1
+          }
+        ]
+      },
+      "check_tree": {
+      },
+      "msg_id": 0,
+      "how_proved": "flow"
+    },
+    {
+      "file": "increment.ads",
+      "line": 5,
+      "col": 3,
+      "rule": "DEPENDS_WRONG",
+      "severity": "info",
+      "entity": {
+        "name": "Increment",
+        "sloc": [
+          {
+            "file": "increment.ads",
+            "line": 1
+          }
+        ]
+      },
+      "check_tree": {
+      },
+      "msg_id": 1,
+      "how_proved": "flow"
+    }
+  ],
+  "session_map": {
+    " 1": "C:\\Users\\rajpr\\Desktop\\PoPL\\trivial\\gnatprove\\increment"
+  },
+  "proof": [
+    {
+      "file": "increment.adb",
+      "line": 6,
+      "col": 10,
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "entity": {
+        "name": "Increment",
+        "sloc": [
+          {
+            "file": "increment.ads",
+            "line": 1
+          }
+        ]
+      },
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC4": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "check_file": "increment.adb",
+      "check_line": 6,
+      "check_col": 10,
+      "msg_id": 2,
+      "session_dir": 1,
+      "how_proved": "prover",
+      "stats": {
+        "CVC4": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      }
+    },
+    {
+      "file": "increment.ads",
+      "line": 7,
+      "col": 24,
+      "rule": "VC_OVERFLOW_CHECK",
+      "severity": "info",
+      "entity": {
+        "name": "Increment",
+        "sloc": [
+          {
+            "file": "increment.ads",
+            "line": 1
+          }
+        ]
+      },
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC4": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "check_file": "increment.ads",
+      "check_line": 7,
+      "check_col": 24,
+      "msg_id": 3,
+      "session_dir": 1,
+      "how_proved": "prover",
+      "stats": {
+        "CVC4": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      }
+    },
+    {
+      "file": "increment.ads",
+      "line": 7,
+      "col": 14,
+      "rule": "VC_POSTCONDITION",
+      "severity": "info",
+      "entity": {
+        "name": "Increment",
+        "sloc": [
+          {
+            "file": "increment.ads",
+            "line": 1
+          }
+        ]
+      },
+      "check_tree": [
+        {
+          "proof_attempts": {
+            "CVC4": {
+              "result": "Valid",
+              "steps": 1,
+              "time": 0
+            }
+          },
+          "transformations": {
+          }
+        }
+      ],
+      "check_file": "increment.ads",
+      "check_line": 7,
+      "check_col": 14,
+      "msg_id": 4,
+      "session_dir": 1,
+      "how_proved": "prover",
+      "stats": {
+        "CVC4": {
+          "count": 1,
+          "max_steps": 1,
+          "max_time": 0.00000000000000E+00
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "predicate": "CLAIM_POST",
+        "arg": {
+          "name": "Increment",
+          "sloc": [
+            {
+              "file": "increment.ads",
+              "line": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "predicate": "CLAIM_EFFECTS",
+        "arg": {
+          "name": "Increment",
+          "sloc": [
+            {
+              "file": "increment.ads",
+              "line": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "assumptions": [
+      ],
+      "claim": {
+        "predicate": "CLAIM_AORTE",
+        "arg": {
+          "name": "Increment",
+          "sloc": [
+            {
+              "file": "increment.ads",
+              "line": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "timings": {
+    "codepeer results": 3.36999983119313E-05,
+    "init_why_sections": 4.57299989648163E-04,
+    "gnatwhy3.run_vcs": 0.00000000000000E+00,
+    "globals (advanced)": 2.41799993091263E-04,
+    "flow analysis": 6.44100015051663E-04,
+    "marking": 5.50000004295725E-05,
+    "translation of standard": 2.66940006986260E-03,
+    "properties (advanced)": 1.73000007634982E-05,
+    "gnatwhy3.register_vcs": 0.00000000000000E+00,
+    "globals (basic)": 2.58999993093312E-04,
+    "gnatwhy3.schedule_vcs": 0.00000000000000E+00,
+    "gnatwhy3.save_session": 0.00000000000000E+00,
+    "gnatwhy3.init": 1.25000000000000E-01
+  }
+}

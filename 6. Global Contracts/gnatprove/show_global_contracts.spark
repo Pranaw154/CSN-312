@@ -1,0 +1,72 @@
+{
+  "spark": [
+    {
+      "name": "Show_Global_Contracts",
+      "sloc": [
+        {
+          "file": "show_global_contracts.ads",
+          "line": 1
+        }
+      ],
+      "spark": "all"
+    },
+    {
+      "name": "Show_Global_Contracts.Set_X_To_Y_Plus_Z",
+      "sloc": [
+        {
+          "file": "show_global_contracts.ads",
+          "line": 7
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Global_Contracts.Set_X_To_X_Plus_Y",
+      "sloc": [
+        {
+          "file": "show_global_contracts.ads",
+          "line": 11
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Global_Contracts.Get_Value_Of_X",
+      "sloc": [
+        {
+          "file": "show_global_contracts.ads",
+          "line": 16
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Global_Contracts.Incr_Parameter_X",
+      "sloc": [
+        {
+          "file": "show_global_contracts.ads",
+          "line": 19
+        }
+      ],
+      "spark": "spec"
+    }
+  ],
+  "flow": [
+  ],
+  "session_map": {
+  },
+  "proof": [
+  ],
+  "assumptions": [
+  ],
+  "timings": {
+    "codepeer results": 6.39299978502095E-04,
+    "init_why_sections": 1.76669994834810E-03,
+    "globals (advanced)": 6.16740016266704E-03,
+    "flow analysis": 9.88390017300844E-03,
+    "marking": 3.20359994657338E-03,
+    "translation of standard": 8.76849982887506E-03,
+    "properties (advanced)": 4.62099997093901E-04,
+    "globals (basic)": 3.89409996569157E-03
+  }
+}

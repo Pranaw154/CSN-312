@@ -1,0 +1,223 @@
+module Standard__integer
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  
+  type integer = <range -2147483648 2147483647>
+  
+  val function first : int
+    ensures { result = ((- 2147483648) : int) }
+  
+  val function last : int
+    ensures { result = (2147483647 : int) }
+  
+  predicate in_range (x: int) = ((first <= x) /\ (x <= last))
+  
+  val in_range (x: int) : bool
+    ensures { result <-> (in_range (x : int)) }
+  
+  clone export ada__model.Static_Discrete with
+    axiom .,
+    type t = integer,
+    function first = first,
+    function last = last,
+    predicate in_range = in_range
+  
+  type integer__ref = { mutable integer__content : integer }
+  
+  function integer__ref_integer__content__projection (a: integer__ref) : integer =
+    a.integer__content
+  
+  meta "model_projection" function integer__ref_integer__content__projection
+  
+  meta "inline:no" function integer__ref_integer__content__projection
+  
+  val integer__havoc (x: integer__ref) : unit
+    writes { x }
+end
+
+module Standard__integer___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__integer as Standard__integer
+  
+  predicate dynamic_invariant (temp___expr_18: int) (temp___is_init_14: bool) (temp___skip_constant_15: bool) (temp___do_toplevel_16: bool) (temp___do_typ_inv_17: bool) =
+    if ((temp___is_init_14 = True) \/
+          (Standard__integer.first <= Standard__integer.last)) then
+      (((Standard__integer.dynamic_property Standard__integer.first)
+          Standard__integer.last)
+         temp___expr_18)
+    else true
+  
+  val dynamic_invariant (temp___expr_18: int) (temp___is_init_14: bool) (temp___skip_constant_15: bool) (temp___do_toplevel_16: bool) (temp___do_typ_inv_17: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant (temp___expr_18 : int))
+                      (temp___is_init_14 : bool))
+                     (temp___skip_constant_15 : bool))
+                    (temp___do_toplevel_16 : bool))
+                   (temp___do_typ_inv_17 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_19: int) (temp___skip_top_level_20: bool) =
+    true
+  
+  val default_initial_assumption (temp___expr_19: int) (temp___skip_top_level_20: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption (temp___expr_19 : int))
+                   (temp___skip_top_level_20 : bool)) }
+end
+
+module Show_modularity__increment
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val function increment (x: int) : int
+  
+  val predicate increment__function_guard (temp___result_161: int) (x: int)
+end
+
+module Show_modularity__increment___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Show_modularity__increment as Show_modularity__increment
+  
+  val increment (x: int) : int
+    requires { [@GP_Pretty_Ada:918] (x < (2147483647 : int)) }
+    ensures { (((result = (Show_modularity__increment.increment x)) /\ true) /\
+                 ((((((Standard__integer___axiom.dynamic_invariant result)
+                        True)
+                       False)
+                      True)
+                     True) /\
+                    (result = (x + (1 : int))))) }
+  
+  axiom increment__post_axiom:
+    forall x : int [Show_modularity__increment.increment x].
+      (((((((Standard__integer___axiom.dynamic_invariant x) True) True) True)
+           True) /\
+          ([@GP_Pretty_Ada:918] (x < (2147483647 : int)))) ->
+         (let result = Show_modularity__increment.increment x in
+          ((true /\
+              (((((Standard__integer___axiom.dynamic_invariant result) True)
+                   False)
+                  True)
+                 True)) /\
+             true)))
+  
+  axiom increment__def_axiom:
+    forall x : int [Show_modularity__increment.increment x].
+      ((((((Standard__integer___axiom.dynamic_invariant x) True) True) True)
+          True) ->
+         ((Show_modularity__increment.increment x) = (x + (1 : int))))
+end
+
+module Show_modularity__x
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val x : int__ref
+end
+
+module Show_modularity__x___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module Show_modularity__subprogram_def
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__integer as Standard__integer
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Show_modularity__increment___axiom as Show_modularity__increment___axiom
+  use Show_modularity__x as Show_modularity__x
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Standard__integer___axiom as Standard__integer___axiom
+  use Show_modularity__increment___axiom as Show_modularity__increment___axiom
+  use Show_modularity__x___axiom as Show_modularity__x___axiom
+  
+  let def (__void_param : unit)
+    requires { [#"show_modularity.adb" 1 0 0] true }
+  = [@vc:divergent]
+    (([@GNAT-comment:Assume dynamic invariants of inputs of the subprogram show_modularity.adb:1]
+      ());
+     ([@GNAT-comment:Assume moved pointers in outputs of the subprogram show_modularity.adb:1]
+      ());
+     ([@GNAT-comment:Check for RTE in the Pre of the subprogram show_modularity.adb:1]
+      ());
+     ([#"show_modularity.adb" 1 0 0] ());
+     ([@GNAT-comment:Assume Pre of the subprogram show_modularity.adb:1] ());
+     ([#"show_modularity.adb" 1 0 0]
+      (try
+         ([#"show_modularity.adb" 2 0 0] ());
+         ([#"show_modularity.adb" 5 0 0] ());
+         ([#"show_modularity.adb" 8 0 0] ());
+         ([#"show_modularity.adb" 10 0 0]
+          (([#"show_modularity.adb" 10 0 0]
+            assume {
+              [#"show_modularity.adb" 10 0 0]
+              ((Standard__integer___axiom.default_initial_assumption
+                  (Show_modularity__x.x.int__content))
+                 False) });
+           ([#"show_modularity.adb" 10 0 0]
+            assume {
+              [#"show_modularity.adb" 10 0 0]
+              (((((Standard__integer___axiom.dynamic_invariant
+                     (Show_modularity__x.x.int__content))
+                    False)
+                   False)
+                  True)
+                 True) })));
+         ([#"show_modularity.adb" 5 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:12:4]
+          [#"show_modularity.adb" 12 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:12:6]
+          [#"show_modularity.adb" 12 0 0]
+          [#"show_modularity.adb" 12 0 0]
+          (Show_modularity__x.x.int__content <- (2147483645 : int)));
+         ([@GP_Sloc:show_modularity.adb:13:4]
+          [#"show_modularity.adb" 13 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:13:20]
+          [#"show_modularity.adb" 13 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:13:9]
+          [#"show_modularity.adb" 13 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:13:6]
+          [#"show_modularity.adb" 13 0 0]
+          [#"show_modularity.adb" 13 0 0]
+          (Show_modularity__x.x.int__content <-
+             ([#"show_modularity.adb" 13 0 0]
+              [@GP_Shape:x_assign__call_increment]
+              [@GP_Sloc:show_modularity.adb:13:9]
+              [@GP_Reason:VC_PRECONDITION]
+              [@vc:annotation]
+              [@comment:   X := Increment (X);         ^ show_modularity.adb:13:9:VC_PRECONDITION]
+              [@GP_Id:0]
+              (Show_modularity__increment___axiom.increment
+                 (Show_modularity__x.x.int__content)))));
+         ([@GP_Sloc:show_modularity.adb:14:4]
+          [#"show_modularity.adb" 14 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:14:9]
+          [#"show_modularity.adb" 14 0 0] ());
+         ([@GP_Sloc:show_modularity.adb:14:6]
+          [#"show_modularity.adb" 14 0 0]
+          [#"show_modularity.adb" 14 0 0]
+          (Show_modularity__x.x.int__content <-
+             ([#"show_modularity.adb" 14 0 0]
+              [@comment:   X := X + 1;           ^ show_modularity.adb:14:11:VC_OVERFLOW_CHECK]
+              [@vc:annotation]
+              [@GP_Reason:VC_OVERFLOW_CHECK]
+              [@GP_Sloc:show_modularity.adb:14:11]
+              [@GP_Shape:x_assign__add]
+              [@GP_Id:1]
+              (Standard__integer.range_check_
+                 ((Show_modularity__x.x.int__content) + (1 : int))))));
+         (raise Return__exc)
+       with Return__exc -> ()
+       end)))
+end

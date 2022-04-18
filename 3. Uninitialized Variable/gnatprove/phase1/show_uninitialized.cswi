@@ -1,0 +1,12 @@
+20220418080458
+-c
+-x
+ada
+-gnatA
+-g
+-g
+-O0
+-gnata
+-gnatwa
+-gnatc
+-gnates=C:\Users\rajpr\Desktop\REPORT\3. Uninitialized Variable\gnatprove\14001390.tmp

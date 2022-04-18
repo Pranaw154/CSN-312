@@ -1,0 +1,12 @@
+20220418080326
+-c
+-x
+ada
+-gnatA
+-g
+-g
+-O0
+-gnata
+-gnatwa
+-gnatc
+-gnates=C:\Users\rajpr\Desktop\REPORT\2. No alliasing\gnatprove\14001390.tmp

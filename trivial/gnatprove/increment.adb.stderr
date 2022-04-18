@@ -1,0 +1,5 @@
+increment.adb:6:10: info: overflow check proved
+increment.ads:4:03: info: data dependencies proved
+increment.ads:5:03: info: flow dependencies proved
+increment.ads:7:14: info: postcondition proved
+increment.ads:7:24: info: overflow check proved

@@ -1,0 +1,84 @@
+{
+  "spark": [
+    {
+      "name": "Show_Uninitialized",
+      "sloc": [
+        {
+          "file": "show_uninitialized.ads",
+          "line": 1
+        }
+      ],
+      "spark": "all"
+    },
+    {
+      "name": "Show_Uninitialized.Max_Array",
+      "sloc": [
+        {
+          "file": "show_uninitialized.ads",
+          "line": 7
+        }
+      ],
+      "spark": "all"
+    }
+  ],
+  "flow": [
+    {
+      "file": "show_uninitialized.adb",
+      "line": 9,
+      "col": 21,
+      "rule": "UNINITIALIZED",
+      "severity": "medium",
+      "entity": {
+        "name": "Show_Uninitialized.Max_Array",
+        "sloc": [
+          {
+            "file": "show_uninitialized.ads",
+            "line": 7
+          }
+        ]
+      },
+      "check_tree": {
+      },
+      "tracefile": "show_uninitialized__flow__0.trace",
+      "msg_id": 0,
+      "how_proved": "flow"
+    },
+    {
+      "file": "show_uninitialized.adb",
+      "line": 13,
+      "col": 14,
+      "rule": "UNINITIALIZED",
+      "severity": "medium",
+      "entity": {
+        "name": "Show_Uninitialized.Max_Array",
+        "sloc": [
+          {
+            "file": "show_uninitialized.ads",
+            "line": 7
+          }
+        ]
+      },
+      "check_tree": {
+      },
+      "tracefile": "show_uninitialized__flow__1.trace",
+      "msg_id": 1,
+      "how_proved": "flow"
+    }
+  ],
+  "session_map": {
+  },
+  "proof": [
+  ],
+  "assumptions": [
+  ],
+  "timings": {
+    "codepeer results": 3.55999982275534E-05,
+    "init_why_sections": 4.65499993879348E-04,
+    "globals (advanced)": 2.93899996904656E-04,
+    "flow analysis": 3.58180003240705E-03,
+    "marking": 7.81999988248572E-05,
+    "translation of standard": 3.13309999182820E-03,
+    "properties (advanced)": 1.63000004249625E-05,
+    "globals (basic)": 2.91900010779500E-04
+  }
+}

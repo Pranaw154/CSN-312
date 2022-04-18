@@ -1,0 +1,12 @@
+20220417055546
+-c
+-x
+ada
+-gnatA
+-g
+-g
+-O0
+-gnata
+-gnatwa
+-gnatc
+-gnates=C:\Users\rajpr\Desktop\PoPL\trivial\gnatprove\d0a7e0e2.tmp

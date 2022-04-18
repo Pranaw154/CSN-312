@@ -1,0 +1,48 @@
+V "GNAT Lib v2021"
+M P W=b
+A -x
+A ada
+A -gnatA
+A -g
+A -g
+A -O0
+A -gnata
+A -gnatwa
+A -gnatc
+P GP FX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+R system.machine_code
+R machine_code
+
+U no_aliasing%b		no_aliasing.adb		f16875ff OO SU
+Z system%s		system.ads		system.ali
+
+D no_aliasing.adb	20220417064040 f16875ff no_aliasing%b
+D system.ads		20210520051134 2ffa5114 system%s
+D "c:\users\rajpr\desktop\report\2. no alliasing\main.adc"  20220417010822 00000000
+G a Z
+X 1 no_aliasing.adb
+1U11*No_Aliasing 1b11 22l5 22t16
+5i4 Total{natural} 8r19 8r27 11m7 11r17 19r19 20m19 20r19 21r19
+7U14 Move_To_Total 7b14 7=29 13l8 13t21 18s4 20s4
+7i29 Source{natural} 8r39 8r54 11r25 12m7
+15i4 X{natural} 18m19 18r19
+
+QQ SPARKVERSION SPARK Community 2021 (20210519)
+GG EK_DIRECT_CALLS no_aliasing__move_to_total 0
+GG EK_GLOBALS no_aliasing__move_to_total local TRUE E_PROCEDURE FALSE ORIGIN_FLOW 1 no_aliasing proper_proof_in 0 proper_input 1 no_aliasing__total proper_output 1 no_aliasing__total refined_proof_in 0 refined_input 1 no_aliasing__total refined_output 1 no_aliasing__total calls_proof 0 calls 0 calls_conditional 0 FALSE FALSE FALSE TRUE ENTRY_CALLS 0 SUSPENDS_ON 0 UNSYNCH_ACCESSES 0 LOCKS 0
+GG EK_DIRECT_CALLS no_aliasing 1 no_aliasing__move_to_total
+GG EK_GLOBALS no_aliasing local FALSE E_PROCEDURE FALSE ORIGIN_FLOW 0 proper_proof_in 0 proper_input 0 proper_output 0 refined_proof_in 0 refined_input 0 refined_output 0 calls_proof 0 calls 0 calls_conditional 0 FALSE FALSE FALSE TRUE ENTRY_CALLS 0 SUSPENDS_ON 0 UNSYNCH_ACCESSES 0 LOCKS 0
+GG EK_FLOW_SCOPE system__Olt FALSE FALSE FALSE FALSE TRUE system VISIBLE_PART
+GG EK_FLOW_SCOPE system TRUE FALSE FALSE FALSE FALSE __standard
+GG EK_FLOW_SCOPE no_aliasing__move_to_total FALSE FALSE FALSE FALSE TRUE no_aliasing BODY_PART
+GG EK_FLOW_SCOPE system__Ole FALSE FALSE FALSE FALSE TRUE system VISIBLE_PART
+GG EK_FLOW_SCOPE system__Ogt FALSE FALSE FALSE FALSE TRUE system VISIBLE_PART
+GG EK_FLOW_SCOPE system__Oge FALSE FALSE FALSE FALSE TRUE system VISIBLE_PART
+GG EK_FLOW_SCOPE system__Oeq FALSE FALSE FALSE FALSE TRUE system VISIBLE_PART
+GG EK_FLOW_SCOPE no_aliasing FALSE FALSE FALSE FALSE FALSE __standard
+GG EK_END_MARKER

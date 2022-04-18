@@ -1,0 +1,15 @@
+show_modularity.adb:8:14: info: overflow check proved
+show_modularity.adb:12:04: info: initialization of "X" proved
+show_modularity.adb:15:04: info: precondition proved
+
+show_modularity.adb:18:04: warning: possibly useless assignment to "X", value might not be referenced [-gnatwm]
+   18 |   X := X + 1;
+      |   ^ here
+
+show_modularity.adb:18:11: medium: overflow check might fail
+   18 |   X := X + 1;
+      |        ~~^~~
+  reason for check: result of addition must fit in a 32-bits machine integer
+  possible fix: call at line 15 should mention X (for argument X) in a postcondition
+   15 |   Increment (X);
+      |   ^ here

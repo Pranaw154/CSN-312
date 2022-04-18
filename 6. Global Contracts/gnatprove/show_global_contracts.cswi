@@ -1,0 +1,12 @@
+20220418065626
+-c
+-x
+ada
+-gnatA
+-g
+-g
+-O0
+-gnata
+-gnatwa
+-gnatc
+-gnates=C:\Users\rajpr\Desktop\PoPL\Global Contracts\gnatprove\94d7e7b9.tmp

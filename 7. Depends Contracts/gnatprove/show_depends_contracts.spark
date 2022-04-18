@@ -1,0 +1,85 @@
+{
+  "spark": [
+    {
+      "name": "Show_Depends_Contracts",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 1
+        }
+      ],
+      "spark": "all"
+    },
+    {
+      "name": "Show_Depends_Contracts.Swap",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 9
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Depends_Contracts.Get_Value_Of_X",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 15
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Depends_Contracts.Set_X_To_Y_Plus_Z",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 19
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Depends_Contracts.Set_X_To_X_Plus_Y",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 23
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Depends_Contracts.Do_Nothing",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 27
+        }
+      ],
+      "spark": "spec"
+    },
+    {
+      "name": "Show_Depends_Contracts.Set_X_To_Zero",
+      "sloc": [
+        {
+          "file": "show_depends_contracts.ads",
+          "line": 31
+        }
+      ],
+      "spark": "spec"
+    }
+  ],
+  "flow": [
+  ],
+  "assumptions": [
+  ],
+  "timings": {
+    "globals (advanced)": 4.46699996246025E-04,
+    "flow analysis": 7.51700019463897E-04,
+    "marking": 1.30000000353903E-04,
+    "properties (advanced)": 2.04999996640254E-05,
+    "globals (basic)": 3.14600009005517E-04
+  }
+}

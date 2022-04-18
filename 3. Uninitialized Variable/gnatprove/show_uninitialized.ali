@@ -1,0 +1,43 @@
+V "GNAT Lib v2021"
+A -x
+A ada
+A -gnatA
+A -g
+A -g
+A -O0
+A -gnata
+A -gnatwa
+A -gnatc
+P GP FX
+
+RN
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U show_uninitialized%b	show_uninitialized.adb	4a2f6dff OO PK
+
+U show_uninitialized%s	show_uninitialized.ads	ced84779 OO PK
+
+D show_uninitialized.ads  20220417071152 ced84779 show_uninitialized%s
+D show_uninitialized.adb  20220417071156 84f72a86 show_uninitialized%b
+D system.ads		20210520051134 2ffa5114 system%s
+D "c:\users\rajpr\desktop\report\3. uninitialized variable\main.adc"  20220417013948 00000000
+G a Z
+X 1 show_uninitialized.ads
+1K9*Show_Uninitialized 9l5 9e23 2|1b14 16l5 16t23
+5A9*Array_Of_Naturals(natural)<integer> 7r28 2|5r28
+7V13*Max_Array{natural} 7>24 2|5b13 14l8 14t17
+7a24 A{5A9} 2|5b24 8r16 9r13 10r20
+X 2 show_uninitialized.adb
+6i7 Max{natural} 9r21 10m13 13r14
+8i11 I{integer} 9r16 10r23
+
+QQ SPARKVERSION SPARK Community 2021 (20210519)
+GG EK_DIRECT_CALLS show_uninitialized__max_array 0
+GG EK_GLOBALS show_uninitialized__max_array local FALSE E_FUNCTION FALSE ORIGIN_FLOW 1 show_uninitialized proper_proof_in 0 proper_input 0 proper_output 0 refined_proof_in 0 refined_input 0 refined_output 0 calls_proof 0 calls 0 calls_conditional 0 FALSE FALSE FALSE TRUE ENTRY_CALLS 0 SUSPENDS_ON 0 UNSYNCH_ACCESSES 0 LOCKS 0
+GG EK_DIRECT_CALLS show_uninitialized 0
+GG EK_GLOBALS show_uninitialized local FALSE E_PACKAGE TRUE ORIGIN_FLOW 0 proper_proof_in 0 proper_input 0 proper_output 0 refined_proof_in 0 refined_input 0 refined_output 0 initializes 0 refined_initializes 0 calls_proof 0 calls 0 calls_conditional 0 local_var 0 FALSE FALSE FALSE FALSE ENTRY_CALLS 0 SUSPENDS_ON 0 UNSYNCH_ACCESSES 0 LOCKS 0
+GG EK_FLOW_SCOPE show_uninitialized__max_array FALSE FALSE FALSE FALSE TRUE show_uninitialized VISIBLE_PART
+GG EK_FLOW_SCOPE show_uninitialized TRUE FALSE FALSE FALSE FALSE __standard
+GG EK_END_MARKER

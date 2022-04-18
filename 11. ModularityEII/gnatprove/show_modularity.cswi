@@ -1,0 +1,12 @@
+20220417074540
+-c
+-x
+ada
+-gnatA
+-g
+-g
+-O0
+-gnata
+-gnatwa
+-gnatc
+-gnates=C:\Users\rajpr\Desktop\PoPL\ModularityEII\gnatprove\da2fc736.tmp

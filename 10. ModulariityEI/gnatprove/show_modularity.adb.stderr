@@ -1,0 +1,7 @@
+show_modularity.adb:7:14: info: overflow check proved, in call inlined at show_modularity.adb:14
+show_modularity.adb:11:04: info: initialization of "X" proved
+
+show_modularity.adb:15:04: warning: possibly useless assignment to "X", value might not be referenced [-gnatwm]
+   15 |   X := X + 1;
+      |   ^ here
+show_modularity.adb:15:11: info: overflow check proved

@@ -1,0 +1,8 @@
+
+show_illegal_spark_code.adb:1:11: warning: file name does not match unit name, should be "no_side_effect.adb" [enabled by default]
+    1 |procedure no_side_effect
+      |          ^ here
+
+show_illegal_spark_code.adb:8:13: error: function with output global "Dummy" is not allowed in SPARK
+    8 |   function F return Integer is
+      |            ^ here

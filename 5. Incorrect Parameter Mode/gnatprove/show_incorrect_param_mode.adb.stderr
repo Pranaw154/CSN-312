@@ -1,0 +1,8 @@
+
+show_incorrect_param_mode.adb:6:07: warning: "Tmp" is not modified, could be declared constant [-gnatwk]
+    6 |      Tmp : T := X;
+      |      ^~~
+
+show_incorrect_param_mode.ads:7:23: warning: unused initial value of "Y"
+    7 |   procedure Swap (X, Y : in out T);
+      |                      ^ here

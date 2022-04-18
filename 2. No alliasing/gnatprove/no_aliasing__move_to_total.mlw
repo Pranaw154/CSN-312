@@ -1,0 +1,275 @@
+module Standard__integer
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  
+  type integer = <range -2147483648 2147483647>
+  
+  val function first : int
+    ensures { result = ((- 2147483648) : int) }
+  
+  val function last : int
+    ensures { result = (2147483647 : int) }
+  
+  predicate in_range (x: int) = ((first <= x) /\ (x <= last))
+  
+  val in_range (x: int) : bool
+    ensures { result <-> (in_range (x : int)) }
+  
+  clone export ada__model.Static_Discrete with
+    axiom .,
+    type t = integer,
+    function first = first,
+    function last = last,
+    predicate in_range = in_range
+  
+  type integer__ref = { mutable integer__content : integer }
+  
+  function integer__ref_integer__content__projection (a: integer__ref) : integer =
+    a.integer__content
+  
+  meta "model_projection" function integer__ref_integer__content__projection
+  
+  meta "inline:no" function integer__ref_integer__content__projection
+  
+  val integer__havoc (x: integer__ref) : unit
+    writes { x }
+end
+
+module Standard__natural
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  
+  type natural = <range 0 2147483647>
+  
+  val function first : int
+    ensures { result = (0 : int) }
+  
+  val function last : int
+    ensures { result = (2147483647 : int) }
+  
+  predicate in_range (x: int) = ((first <= x) /\ (x <= last))
+  
+  val in_range (x: int) : bool
+    ensures { result <-> (in_range (x : int)) }
+  
+  clone export ada__model.Static_Discrete with
+    axiom .,
+    type t = natural,
+    function first = first,
+    function last = last,
+    predicate in_range = in_range
+  
+  type natural__ref = { mutable natural__content : natural }
+  
+  function natural__ref_natural__content__projection (a: natural__ref) : natural =
+    a.natural__content
+  
+  meta "model_projection" function natural__ref_natural__content__projection
+  
+  meta "inline:no" function natural__ref_natural__content__projection
+  
+  val natural__havoc (x: natural__ref) : unit
+    writes { x }
+end
+
+module Standard__natural___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__natural as Standard__natural
+  
+  predicate dynamic_invariant (temp___expr_46: int) (temp___is_init_42: bool) (temp___skip_constant_43: bool) (temp___do_toplevel_44: bool) (temp___do_typ_inv_45: bool) =
+    if ((temp___is_init_42 = True) \/
+          (Standard__natural.first <= Standard__natural.last)) then
+      (((Standard__natural.dynamic_property Standard__natural.first)
+          Standard__natural.last)
+         temp___expr_46)
+    else true
+  
+  val dynamic_invariant (temp___expr_46: int) (temp___is_init_42: bool) (temp___skip_constant_43: bool) (temp___do_toplevel_44: bool) (temp___do_typ_inv_45: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant (temp___expr_46 : int))
+                      (temp___is_init_42 : bool))
+                     (temp___skip_constant_43 : bool))
+                    (temp___do_toplevel_44 : bool))
+                   (temp___do_typ_inv_45 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_47: int) (temp___skip_top_level_48: bool) =
+    true
+  
+  val default_initial_assumption (temp___expr_47: int) (temp___skip_top_level_48: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption (temp___expr_47 : int))
+                   (temp___skip_top_level_48 : bool)) }
+end
+
+module No_aliasing__total
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val total : int__ref
+end
+
+module No_aliasing__move_to_total__source
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val source : int__ref
+end
+
+module Standard__integer___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__integer as Standard__integer
+  
+  predicate dynamic_invariant (temp___expr_18: int) (temp___is_init_14: bool) (temp___skip_constant_15: bool) (temp___do_toplevel_16: bool) (temp___do_typ_inv_17: bool) =
+    if ((temp___is_init_14 = True) \/
+          (Standard__integer.first <= Standard__integer.last)) then
+      (((Standard__integer.dynamic_property Standard__integer.first)
+          Standard__integer.last)
+         temp___expr_18)
+    else true
+  
+  val dynamic_invariant (temp___expr_18: int) (temp___is_init_14: bool) (temp___skip_constant_15: bool) (temp___do_toplevel_16: bool) (temp___do_typ_inv_17: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant (temp___expr_18 : int))
+                      (temp___is_init_14 : bool))
+                     (temp___skip_constant_15 : bool))
+                    (temp___do_toplevel_16 : bool))
+                   (temp___do_typ_inv_17 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_19: int) (temp___skip_top_level_20: bool) =
+    true
+  
+  val default_initial_assumption (temp___expr_19: int) (temp___skip_top_level_20: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption (temp___expr_19 : int))
+                   (temp___skip_top_level_20 : bool)) }
+end
+
+module No_aliasing__total___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module No_aliasing__move_to_total__source___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module No_aliasing__move_to_total__subprogram_def
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use _gnatprove_standard.Boolean as Boolean
+  use Standard__integer as Standard__integer
+  use Standard__natural___axiom as Standard__natural___axiom
+  use No_aliasing__total as No_aliasing__total
+  use No_aliasing__move_to_total__source as No_aliasing__move_to_total__source
+  use Standard__natural___axiom as Standard__natural___axiom
+  use Standard__integer___axiom as Standard__integer___axiom
+  use No_aliasing__total___axiom as No_aliasing__total___axiom
+  use No_aliasing__move_to_total__source___axiom as No_aliasing__move_to_total__source___axiom
+  
+  let def (__void_param : unit)
+    requires { [#"no_aliasing.adb" 7 0 0] true }
+    ensures { [#"no_aliasing.adb" 7 0 0]
+              [#"no_aliasing.adb" 8 0 0]
+              [@GP_Reason:VC_POSTCONDITION]
+              [@model_vc_post]
+              [@comment:     with Post => Total = Total'Old + Source'Old and Source = 0                   ^ no_aliasing.adb:8:19:VC_POSTCONDITION]
+              [@GP_Id:4]
+              [@GP_Shape:pragargs__and]
+              [@GP_Sloc:no_aliasing.adb:8:19]
+              (([@GP_Pretty_Ada:871]
+                [@GP_Sloc:no_aliasing.adb:8:19]
+                ((No_aliasing__total.total.int__content)
+                   = ((old (No_aliasing__total.total.int__content))
+                        + (old (No_aliasing__move_to_total__source.source.int__content))))) /\
+                 ([@GP_Sloc:no_aliasing.adb:8:54]
+                  [@GP_Pretty_Ada:881]
+                  ((No_aliasing__move_to_total__source.source.int__content)
+                     = (0 : int)))) }
+  = [@vc:divergent]
+    (([@GNAT-comment:Assume dynamic invariants of inputs of the subprogram no_aliasing.adb:7]
+      ());
+     assume {
+       ((((Standard__natural___axiom.dynamic_invariant
+             (No_aliasing__total.total.int__content))
+            True)
+           False)
+          True)
+         True };
+     assume {
+       ((((Standard__natural___axiom.dynamic_invariant
+             (No_aliasing__move_to_total__source.source.int__content))
+            True)
+           False)
+          True)
+         True };
+     ([@GNAT-comment:Assume moved pointers in outputs of the subprogram no_aliasing.adb:7]
+      ());
+     ([@GNAT-comment:Check for RTE in the Pre of the subprogram no_aliasing.adb:7]
+      ());
+     ([@GNAT-comment:Assume Pre of the subprogram no_aliasing.adb:7] ());
+     (let temp___old_187 =
+        No_aliasing__move_to_total__source.source.int__content in
+      let temp___old_186 = No_aliasing__total.total.int__content in
+      (try
+         ([#"no_aliasing.adb" 8 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:11:7] [#"no_aliasing.adb" 11 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:11:17] [#"no_aliasing.adb" 11 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:11:14]
+          [#"no_aliasing.adb" 11 0 0]
+          [#"no_aliasing.adb" 11 0 0]
+          (No_aliasing__total.total.int__content <-
+             ([#"no_aliasing.adb" 11 0 0]
+              [@GP_Sloc:no_aliasing.adb:11:23]
+              [@vc:annotation]
+              [@GP_Reason:VC_OVERFLOW_CHECK]
+              [@comment:      Total  := Total + Source;                       ^ no_aliasing.adb:11:23:VC_OVERFLOW_CHECK]
+              [@GP_Shape:total_assign__add]
+              [@GP_Id:2]
+              (Standard__integer.range_check_
+                 ((No_aliasing__total.total.int__content)
+                    + (No_aliasing__move_to_total__source.source.int__content))))));
+         ([@GP_Sloc:no_aliasing.adb:12:14]
+          [#"no_aliasing.adb" 12 0 0]
+          [#"no_aliasing.adb" 12 0 0]
+          (No_aliasing__move_to_total__source.source.int__content <-
+             (0 : int)));
+         (raise Return__exc)
+       with Return__exc -> ()
+       end);
+      (begin
+         ensures { true }
+         let _ =
+           let _ =
+             (Boolean.andb
+                ((No_aliasing__total.total.int__content)
+                   = ([#"no_aliasing.adb" 8 0 0]
+                      [@GP_Sloc:no_aliasing.adb:8:37]
+                      [@vc:annotation]
+                      [@GP_Reason:VC_OVERFLOW_CHECK]
+                      [@GP_Id:3]
+                      [@comment:     with Post => Total = Total'Old + Source'Old and Source = 0                                     ^ no_aliasing.adb:8:37:VC_OVERFLOW_CHECK]
+                      [@GP_Shape:pragargs__and__cmp__add]
+                      (Standard__integer.range_check_
+                         (temp___old_186 + temp___old_187)))))
+               ((No_aliasing__move_to_total__source.source.int__content)
+                  = (0 : int)) in
+           () in
+         ()
+       end)))
+end

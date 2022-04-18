@@ -1,0 +1,251 @@
+module Standard__natural
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  
+  type natural = <range 0 2147483647>
+  
+  val function first : int
+    ensures { result = (0 : int) }
+  
+  val function last : int
+    ensures { result = (2147483647 : int) }
+  
+  predicate in_range (x: int) = ((first <= x) /\ (x <= last))
+  
+  val in_range (x: int) : bool
+    ensures { result <-> (in_range (x : int)) }
+  
+  clone export ada__model.Static_Discrete with
+    axiom .,
+    type t = natural,
+    function first = first,
+    function last = last,
+    predicate in_range = in_range
+  
+  type natural__ref = { mutable natural__content : natural }
+  
+  function natural__ref_natural__content__projection (a: natural__ref) : natural =
+    a.natural__content
+  
+  meta "model_projection" function natural__ref_natural__content__projection
+  
+  meta "inline:no" function natural__ref_natural__content__projection
+  
+  val natural__havoc (x: natural__ref) : unit
+    writes { x }
+end
+
+module Standard__natural___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__natural as Standard__natural
+  
+  predicate dynamic_invariant (temp___expr_46: int) (temp___is_init_42: bool) (temp___skip_constant_43: bool) (temp___do_toplevel_44: bool) (temp___do_typ_inv_45: bool) =
+    if ((temp___is_init_42 = True) \/
+          (Standard__natural.first <= Standard__natural.last)) then
+      (((Standard__natural.dynamic_property Standard__natural.first)
+          Standard__natural.last)
+         temp___expr_46)
+    else true
+  
+  val dynamic_invariant (temp___expr_46: int) (temp___is_init_42: bool) (temp___skip_constant_43: bool) (temp___do_toplevel_44: bool) (temp___do_typ_inv_45: bool) : 
+    bool
+    ensures { result
+                <->
+                (((((dynamic_invariant (temp___expr_46 : int))
+                      (temp___is_init_42 : bool))
+                     (temp___skip_constant_43 : bool))
+                    (temp___do_toplevel_44 : bool))
+                   (temp___do_typ_inv_45 : bool)) }
+  
+  predicate default_initial_assumption (temp___expr_47: int) (temp___skip_top_level_48: bool) =
+    true
+  
+  val default_initial_assumption (temp___expr_47: int) (temp___skip_top_level_48: bool) : 
+    bool
+    ensures { result
+                <->
+                ((default_initial_assumption (temp___expr_47 : int))
+                   (temp___skip_top_level_48 : bool)) }
+end
+
+module No_aliasing__total
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val total : int__ref
+end
+
+module No_aliasing__move_to_total___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__natural___axiom as Standard__natural___axiom
+  use No_aliasing__total as No_aliasing__total
+  
+  val move_to_total (source: int__ref) : unit
+    reads { No_aliasing__total.total }
+    requires { true }
+    writes { No_aliasing__total.total, source }
+    ensures { ((([@GP_Pretty_Ada:871]
+                 ((No_aliasing__total.total.int__content)
+                    = ((old (No_aliasing__total.total.int__content))
+                         + (old (source.int__content))))) /\
+                  ([@GP_Pretty_Ada:881] ((source.int__content) = (0 : int)))) /\
+                 ((((((Standard__natural___axiom.dynamic_invariant
+                         (source.int__content))
+                        True)
+                       True)
+                      True)
+                     True) /\
+                    (((((Standard__natural___axiom.dynamic_invariant
+                           (No_aliasing__total.total.int__content))
+                          True)
+                         True)
+                        True)
+                       True))) }
+end
+
+module No_aliasing__x
+  use _gnatprove_standard.Main
+  use int.Int
+  
+  val x : int__ref
+end
+
+module No_aliasing__total___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module No_aliasing__x___axiom
+  use _gnatprove_standard.Main
+  use int.Int
+end
+
+module No_aliasing__subprogram_def
+  use _gnatprove_standard.Main
+  use int.Int
+  use int.Int
+  use Standard__natural___axiom as Standard__natural___axiom
+  use No_aliasing__total as No_aliasing__total
+  use No_aliasing__move_to_total___axiom as No_aliasing__move_to_total___axiom
+  use No_aliasing__x as No_aliasing__x
+  use Standard__natural___axiom as Standard__natural___axiom
+  use No_aliasing__total___axiom as No_aliasing__total___axiom
+  use No_aliasing__move_to_total___axiom as No_aliasing__move_to_total___axiom
+  use No_aliasing__x___axiom as No_aliasing__x___axiom
+  
+  let def (__void_param : unit)
+    requires { [#"no_aliasing.adb" 1 0 0] true }
+  = [@vc:divergent]
+    (([@GNAT-comment:Assume dynamic invariants of inputs of the subprogram no_aliasing.adb:1]
+      ());
+     ([@GNAT-comment:Assume moved pointers in outputs of the subprogram no_aliasing.adb:1]
+      ());
+     ([@GNAT-comment:Check for RTE in the Pre of the subprogram no_aliasing.adb:1]
+      ());
+     ([#"no_aliasing.adb" 1 0 0] ());
+     ([@GNAT-comment:Assume Pre of the subprogram no_aliasing.adb:1] ());
+     ([#"no_aliasing.adb" 1 0 0]
+      (try
+         ([#"no_aliasing.adb" 2 0 0] ());
+         ([#"no_aliasing.adb" 5 0 0]
+          (([#"no_aliasing.adb" 5 0 0]
+            (No_aliasing__total.total.int__content <- (0 : int)));
+           ([#"no_aliasing.adb" 5 0 0]
+            assume {
+              [#"no_aliasing.adb" 5 0 0]
+              (((((Standard__natural___axiom.dynamic_invariant
+                     (No_aliasing__total.total.int__content))
+                    True)
+                   False)
+                  True)
+                 True) })));
+         ([#"no_aliasing.adb" 7 0 0] ());
+         ([#"no_aliasing.adb" 15 0 0]
+          (([#"no_aliasing.adb" 15 0 0]
+            (No_aliasing__x.x.int__content <- (3 : int)));
+           ([#"no_aliasing.adb" 15 0 0]
+            assume {
+              [#"no_aliasing.adb" 15 0 0]
+              (((((Standard__natural___axiom.dynamic_invariant
+                     (No_aliasing__x.x.int__content))
+                    True)
+                   False)
+                  True)
+                 True) })));
+         ([@GP_Sloc:no_aliasing.adb:18:19] [#"no_aliasing.adb" 18 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:18:4] [#"no_aliasing.adb" 18 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:18:4]
+          [#"no_aliasing.adb" 18 0 0]
+          (let temp___compl_182 = No_aliasing__x.x.int__content in
+           ([#"no_aliasing.adb" 18 0 0] (val _f : unit in
+                                         _f));
+           (No_aliasing__move_to_total___axiom.move_to_total No_aliasing__x.x)));
+         ([@GP_Sloc:no_aliasing.adb:19:4]
+          [#"no_aliasing.adb" 19 0 0]
+          (([#"no_aliasing.adb" 19 0 0]
+            (begin
+               ensures { true }
+               let _ =
+                 let _ =
+                   ((No_aliasing__total.total.int__content) = (3 : int)) in
+                 () in
+               ()
+             end));
+           ([#"no_aliasing.adb" 19 0 0]
+            assert {
+              [#"no_aliasing.adb" 19 0 0]
+              [#"no_aliasing.adb" 19 0 0]
+              [@GP_Shape:pragargs__cmp]
+              [@vc:annotation]
+              [@GP_Reason:VC_ASSERT]
+              [@GP_Sloc:no_aliasing.adb:19:19]
+              [@GP_Id:0]
+              [@comment:   pragma Assert (Total = 3); -- OK                   ^ no_aliasing.adb:19:19:VC_ASSERT]
+              [@GP_Pretty_Ada:906]
+              [@GP_Sloc:no_aliasing.adb:19:19]
+              ((No_aliasing__total.total.int__content) = (3 : int)) })));
+         ([@GP_Sloc:no_aliasing.adb:20:19] [#"no_aliasing.adb" 20 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:20:4] [#"no_aliasing.adb" 20 0 0] ());
+         ([@GP_Sloc:no_aliasing.adb:20:4]
+          [#"no_aliasing.adb" 20 0 0]
+          (let temp___compl_183 = No_aliasing__total.total.int__content in
+           [#"no_aliasing.adb" 20 0 0]
+           (let source = { int__content = temp___compl_183 } in
+            ([#"no_aliasing.adb" 20 0 0] (val _f : unit in
+                                          _f));
+            (No_aliasing__move_to_total___axiom.move_to_total source);
+            ([#"no_aliasing.adb" 20 0 0]
+             (No_aliasing__total.total.int__content <- (source.int__content))))));
+         ([@GP_Sloc:no_aliasing.adb:21:4]
+          [#"no_aliasing.adb" 21 0 0]
+          (([#"no_aliasing.adb" 21 0 0]
+            (begin
+               ensures { true }
+               let _ =
+                 let _ =
+                   ((No_aliasing__total.total.int__content) = (6 : int)) in
+                 () in
+               ()
+             end));
+           ([#"no_aliasing.adb" 21 0 0]
+            assert {
+              [#"no_aliasing.adb" 21 0 0]
+              [#"no_aliasing.adb" 21 0 0]
+              [@comment:   pragma Assert (Total = 6); -- runtime error                   ^ no_aliasing.adb:21:19:VC_ASSERT]
+              [@GP_Shape:pragargs__cmp]
+              [@vc:annotation]
+              [@GP_Reason:VC_ASSERT]
+              [@GP_Sloc:no_aliasing.adb:21:19]
+              [@GP_Id:1]
+              [@GP_Pretty_Ada:915]
+              [@GP_Sloc:no_aliasing.adb:21:19]
+              ((No_aliasing__total.total.int__content) = (6 : int)) })));
+         (raise Return__exc)
+       with Return__exc -> ()
+       end)))
+end

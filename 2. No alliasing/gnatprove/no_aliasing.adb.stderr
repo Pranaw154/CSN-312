@@ -1,0 +1,19 @@
+no_aliasing.adb:8:19: info: postcondition proved
+no_aliasing.adb:8:37: info: overflow check proved
+
+no_aliasing.adb:11:23: medium: overflow check might fail
+   11 |      Total  := Total + Source;
+      |                ~~~~~~^~~~~~~~
+  reason for check: result of addition must fit in a 32-bits machine integer
+  possible fix: subprogram at line 7 should mention Source and Total in a precondition
+    7 |   procedure Move_To_Total (Source : in out Natural)
+      |   ^ here
+no_aliasing.adb:19:19: info: assertion proved
+
+no_aliasing.adb:20:19: high: formal parameter "Source" and global "Total" are aliased (SPARK RM 6.4.2)
+   20 |   Move_To_Total (Total);     -- flow analysis error
+      |                  ^~~~~
+
+no_aliasing.adb:21:19: medium: assertion might fail
+   21 |   pragma Assert (Total = 6); -- runtime error
+      |                  ^~~~~~~~~

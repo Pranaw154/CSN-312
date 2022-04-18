@@ -1,0 +1,12 @@
+20220417062134
+-c
+-x
+ada
+-gnatA
+-g
+-g
+-O0
+-gnata
+-gnatwa
+-gnatc
+-gnates=C:\Users\rajpr\Desktop\PoPL\No side effects\gnatprove\14001390.tmp

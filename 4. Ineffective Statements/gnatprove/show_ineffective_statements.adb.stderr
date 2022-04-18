@@ -1,0 +1,28 @@
+
+show_ineffective_statements.adb:6:07: warning: variable "Tmp" is assigned but never read [-gnatwm]
+    6 |      Tmp : T;
+      |      ^~~
+
+show_ineffective_statements.adb:8:07: warning: possibly useless assignment to "Tmp", value might not be referenced [-gnatwm]
+    8 |      Tmp := X; -- This statement is ineffective
+      |      ^~~
+
+show_ineffective_statements.adb:8:11: warning: unused assignment
+    8 |      Tmp := X; -- This statement is ineffective
+      |      ~~~~^~~~
+
+show_ineffective_statements.adb:13:04: warning: "Tmp" is not modified, could be declared constant [-gnatwk]
+   13 |   Tmp : T := 0;
+      |   ^~~
+
+show_ineffective_statements.adb:16:07: warning: variable "Temp" is not referenced [-gnatwu]
+   16 |      Temp : T := X; -- This variable is unused
+      |      ^~~~
+
+show_ineffective_statements.ads:7:21: warning: unused initial value of "X"
+    7 |   procedure Swap1 (X, Y : in out T);
+      |                    ^ here
+
+show_ineffective_statements.ads:8:21: warning: unused initial value of "X"
+    8 |   procedure Swap2 (X, Y : in out T);
+      |                    ^ here

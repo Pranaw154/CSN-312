@@ -1,0 +1,62 @@
+{
+  "spark": [
+    {
+      "name": "Show_Incorrect_Param_Mode",
+      "sloc": [
+        {
+          "file": "show_incorrect_param_mode.ads",
+          "line": 1
+        }
+      ],
+      "spark": "all"
+    },
+    {
+      "name": "Show_Incorrect_Param_Mode.Swap",
+      "sloc": [
+        {
+          "file": "show_incorrect_param_mode.ads",
+          "line": 7
+        }
+      ],
+      "spark": "all"
+    }
+  ],
+  "flow": [
+    {
+      "file": "show_incorrect_param_mode.ads",
+      "line": 7,
+      "col": 23,
+      "rule": "UNUSED_INITIAL_VALUE",
+      "severity": "warning",
+      "entity": {
+        "name": "Show_Incorrect_Param_Mode.Swap",
+        "sloc": [
+          {
+            "file": "show_incorrect_param_mode.ads",
+            "line": 7
+          }
+        ]
+      },
+      "check_tree": {
+      },
+      "msg_id": 0,
+      "how_proved": "flow"
+    }
+  ],
+  "session_map": {
+  },
+  "proof": [
+  ],
+  "assumptions": [
+  ],
+  "timings": {
+    "codepeer results": 3.01000000035856E-05,
+    "init_why_sections": 4.76499990327284E-04,
+    "globals (advanced)": 2.84300011117011E-04,
+    "flow analysis": 7.66200013458729E-04,
+    "marking": 6.15000026300550E-05,
+    "translation of standard": 2.85440008156002E-03,
+    "properties (advanced)": 1.63000004249625E-05,
+    "globals (basic)": 3.80499986931682E-04
+  }
+}

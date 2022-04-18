@@ -1,0 +1,39 @@
+
+show_runtime_errors.adb:7:12: medium: overflow check might fail
+    7 |      A (I + J) := P / Q;
+      |         ~~^~~
+  reason for check: result of addition must fit in a 32-bits machine integer
+  possible fix: subprogram at show_runtime_errors.ads:7 should mention I and J in a precondition
+    7 |   procedure Update (A : in out Nat_Array; I, J, P, Q : Integer);
+      |   ^ here
+
+show_runtime_errors.adb:7:12: medium: array index check might fail
+    7 |      A (I + J) := P / Q;
+      |         ~~^~~
+  reason for check: result of addition must be a valid index into the array
+  possible fix: subprogram at show_runtime_errors.ads:7 should mention I and J in a precondition
+    7 |   procedure Update (A : in out Nat_Array; I, J, P, Q : Integer);
+      |   ^ here
+
+show_runtime_errors.adb:7:22: medium: divide by zero might fail
+    7 |      A (I + J) := P / Q;
+      |                   ~~^~~
+  possible fix: subprogram at show_runtime_errors.ads:7 should mention P and Q in a precondition
+    7 |   procedure Update (A : in out Nat_Array; I, J, P, Q : Integer);
+      |   ^ here
+
+show_runtime_errors.adb:7:22: medium: overflow check might fail
+    7 |      A (I + J) := P / Q;
+      |                   ~~^~~
+  reason for check: result of division must fit in a 32-bits machine integer
+  possible fix: subprogram at show_runtime_errors.ads:7 should mention P and Q in a precondition
+    7 |   procedure Update (A : in out Nat_Array; I, J, P, Q : Integer);
+      |   ^ here
+
+show_runtime_errors.adb:7:22: medium: range check might fail
+    7 |      A (I + J) := P / Q;
+      |                   ~~^~~
+  reason for check: result of division must fit in the target type of the assignment
+  possible fix: subprogram at show_runtime_errors.ads:7 should mention P and Q in a precondition
+    7 |   procedure Update (A : in out Nat_Array; I, J, P, Q : Integer);
+      |   ^ here
